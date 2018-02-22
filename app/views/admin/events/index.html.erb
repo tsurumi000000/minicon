@@ -14,40 +14,25 @@
   </thead>
 
   <tbody>
+    <% @events.each do |event|  %>
     <tr>
-      <td>konkatsu</td>
-      <td>Nice Konkatsu Event</td>
-      <td>銀座</td>
-      <td>2018/02/25 20:00</td>
-      <td>5,000円</td>
-      <td>50</td>
-      <td><a>Show</a></td>
-      <td><a>Edit</a></td>
-      <td><a>Destroy</a></td>
+      <td><%= event.event_category.name %></td>
+      <td><%= event.title  %></td>
+      <td><%= event.location %></td>
+      <td><%= event.start_at.strftime('%Y%M%d %H%M')  %></td>
+      <td><%= event.ticket_price %>円</td>
+      <td><%= event.ticket_quantity %></td>
+      <td><%= link_to 'Show', admin_event_path(event)  %></td>
+      <td><%= link_to 'Edit', edit_admin_event_path(event) %></td>
+      <td><%= link_to 'Destroy' , admin_event_path(event) , method: :delete, date: { confirm: "Are you sure?" } %></td>
     </tr>
-    <tr>
-      <td>koikatsu</td>
-      <td>Fun Koikatsu Event</td>
-      <td>池袋</td>
-      <td>2018/02/25 18:00</td>
-      <td>4,000円</td>
-      <td>20</td>
-      <td><a>Show</a></td>
-      <td><a>Edit</a></td>
-      <td><a>Destroy</a></td>
-    </tr>
-    <tr>
-      <td>gourmet</td>
-      <td>Gourmet Themed Event</td>
-      <td>上野</td>
-      <td>2018/02/25 12:00</td>
-      <td>6,000円</td>
-      <td>3</td>
-      <td><a>Show</a></td>
-      <td><a>Edit</a></td>
-      <td><a>Destroy</a></td>
-    </tr>
+    
+  
+    <% end  %>
+    
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'New Event', new_admin_event_path %>
